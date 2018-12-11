@@ -52,6 +52,7 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth;
     static final int REQUEST_IMAGE_CAPTURE = 6;
     static final int RESULT_GALLERY_PHOTO = 1;
+    static final int MY_PERMISSIONS_REQUEST_CAMERA=10;
     private AlertDialog.Builder mAttachImageDialog;
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
