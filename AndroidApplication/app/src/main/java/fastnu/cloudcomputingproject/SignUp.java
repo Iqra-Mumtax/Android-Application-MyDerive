@@ -102,7 +102,7 @@ public class SignUp extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i) {
                             case 0:
-                                CameraPictureIntent();
+                                capturePhoto();
                                 break;
                             case 1:
                                 galleryPhoto();
@@ -153,10 +153,41 @@ public class SignUp extends AppCompatActivity {
         startActivityForResult(gallery, RESULT_GALLERY_PHOTO);
     }
 
+    private void capturePhoto() {
+        if (ContextCompat.checkSelfPermission(SignUp.this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(SignUp.this,
+                    new String[]{Manifest.permission.CAMERA},
+                    MY_PERMISSIONS_REQUEST_CAMERA);
+        } else {
+            CameraPictureIntent();
+        }
+    }
+
     private void CameraPictureIntent() {
         Intent takePictureIntent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CAMERA: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    CameraPictureIntent();
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
         }
     }
 

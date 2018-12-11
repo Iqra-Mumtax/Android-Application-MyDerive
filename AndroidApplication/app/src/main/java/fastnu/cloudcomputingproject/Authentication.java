@@ -89,7 +89,7 @@ public class Authentication extends AppCompatActivity {
                 String Email,Password;
                 Email=email.getText().toString().trim();
                 Password=password.getText().toString().trim();
-                if(!Email.equals( null) &&!Password.equals( null ) ){
+                if(!Email.matches("") &&!Password.matches("") ){
                    signInAppMethod( Email,Password );
                 }
                 else{

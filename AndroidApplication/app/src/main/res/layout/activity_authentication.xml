@@ -47,7 +47,7 @@
             android:layout_marginTop="8dp"
             android:background="@null"
             android:ems="10"
-            android:hint="xyz@gmail.com"
+            android:hint="email"
             android:inputType="textEmailAddress"
             android:textColor="@android:color/holo_orange_dark"
             android:textColorHint="@android:color/holo_orange_dark"
